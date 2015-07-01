@@ -2,7 +2,7 @@
 
 Library to access the Ideal Postcodes API.
 The main documentation for the API is here:
-https://ideal-postcodes.co.uk/documentation/paf-data#longitude
+https://ideal-postcodes.co.uk/documentation
 
 Still much work-in-progress, but a working library. 
 
