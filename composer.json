@@ -1,0 +1,36 @@
+{
+    "name": "academe/idealpostcodes",
+    "type": "library",
+    "description": "Access the Ideal Postcodes API",
+    "keywords": ["postcodes", "api", "web service"],
+    "homepage": "https://github.com/academe/idealpostcodes",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Jason Judge",
+            "email": "jason.judge@academe.co.uk",
+            "homepage": "https://academe.co.uk/"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4.0",
+	"guzzlehttp/psr7": "~1.1",
+        "ext-json": "*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Academe\\IdealPostcodes\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Academe\\IdealPostcodes\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    }
+}
