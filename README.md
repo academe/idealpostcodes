@@ -14,7 +14,8 @@ possible. It does need extending out with more interfaces though, and perhaps ma
 so classes can be extended as needed.
 
 Communication with the remote API happens in the `Transport` object. Instantiate that with your API key
-and pass that into the other classes.
+and pass that into the other classes. This class uses curl to communicate, but you may want to create
+a guzzle version or use a different http client - just write an adapter and you should be good.
 
 Each value class searves two purposes:
 
