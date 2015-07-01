@@ -16,7 +16,6 @@
 
     "require": {
         "php": ">=5.4.0",
-        "guzzlehttp/psr7": "~1.1",
         "ext-json": "*",
         "phpcollection/phpcollection": "^0.4.0"
     },
