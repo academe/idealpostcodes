@@ -1,10 +1,10 @@
 # IdealPostcodes
 
-Library to access the Ideal Postcodes API.
+Library to access the [Ideal Postcodes](https://ideal-postcodes.co.uk/) API.
 The main documentation for the API is here:
 https://ideal-postcodes.co.uk/documentation
 
-Still much work-in-progress, but a working library. 
+Still much work-in-progress, but a working library. This package is not associated officially with *Ideal Postcodes*.
 
 ## General Aproach
 
