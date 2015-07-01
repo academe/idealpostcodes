@@ -1,21 +1,12 @@
 <?php namespace Academe\IdealPostcodes;
 
 /**
- * Handles a set of results from the API.
- * Holds the raw data, API results codes and messages, and a
- * list of iteratable items.
+ * Handles responses from the API.
+ * Holds the raw data, API results codes and messages.
  */
 
-use Iterator;
-use Countable;
-
-abstract class Results implements Iterator, Countable
+abstract class AbstractResponse
 {
-    /**
-     * The array of items to iterate over.
-     */
-    protected $items = [];
-
     /**
      * The status of the API result.
      */
@@ -64,44 +55,6 @@ abstract class Results implements Iterator, Countable
     public function getMessage()
     {
         return $this->status_message;
-    }
-
-    /**
-     * Iterator methods.
-     */
-    public function rewind()
-    {
-        reset($this->items);
-    }
-
-    public function current()
-    {
-        $var = current($this->items);
-        return $var;
-    }
-
-    public function key() 
-    {
-        $var = key($this->items);
-        return $var;
-    }
-
-    public function next() 
-    {
-        $var = next($this->items);
-        return $var;
-    }
-
-    public function valid()
-    {
-        $key = key($this->items);
-        $var = ($key !== NULL && $key !== FALSE);
-        return $var;
-    }
-
-    public function count()
-    {
-        return count($this->items);
     }
 
     /**

@@ -11,13 +11,30 @@ use use Academe\IdealPostcodes\Transport;
 
 $transport = new Transport('iddqd');
 $postcode = new Postcode($transport);
-$postcode->getAddresses('ID1 1QD');
+$addresses = $postcode->getAddresses('ID1 1QD');
 
-foreach($postcode as $address) {
+foreach($addresses as $address) {
     echo $address->line_1 . "<br>";
 }
 
-echo "Number of addresses = " . count($postcode);
-
+echo "Number of addresses = " . count($addresses);
 ~~~
 
+Get up to 20 postcodes in a 300m radius around a latitude/longitude location:
+
+~~~php
+use use Academe\IdealPostcodes\GeoLocation;
+use use Academe\IdealPostcodes\Transport;
+
+$transport = new Transport('iddqd');
+$geo = new GeoLocation($transport);
+$postcodes = $geo->getPostcodes(-0.20864436, 51.48994883, 20, 300);
+
+foreach($postcodes as $postcode) {
+    echo $postcode->postcode . "<br>";
+    echo $postcode->northings . "<br>";
+    echo $postcode->eastings . "<br>";
+}
+
+echo "Number of postcodes = " . count($postcodes);
+~~~

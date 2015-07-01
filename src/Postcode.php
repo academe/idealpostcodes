@@ -5,7 +5,9 @@
  * Will itterate over the list of found addresses.
  */
 
-class Postcode extends Results
+use PhpCollection\Sequence;
+
+class Postcode extends AbstractResponse
 {
     /**
      * The communications helper.
@@ -20,9 +22,10 @@ class Postcode extends Results
     /**
      * $respose is the array response from the API call.
      */
-    public function __construct(TransportInterface $transport)
+    public function __construct(TransportInterface $transport, $postcode_response = null)
     {
         $this->transport = $transport;
+        $this->raw_response = $postcode_response;
     }
 
     /**
@@ -36,7 +39,7 @@ class Postcode extends Results
     }
 
     /**
-     * Get all addresses for a postcode.
+     * Get all addresses for a postcode from the API.
      */
     public function getAddresses($postcode)
     {
@@ -46,12 +49,15 @@ class Postcode extends Results
 
         $addresses = $this->parseResponse($response);
 
+        $address_collection = new Sequence;
+
         if (!empty($addresses)) {
             foreach($addresses as $address) {
-                $this->items[] = new Address($this->transport, $address);
+                $address_collection->add(new Address($this->transport, $address));
             }
         }
 
-        return $this;
+        // Return a collection of addresses.
+        return $address_collection;
     }
 }

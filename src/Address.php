@@ -4,19 +4,14 @@
  * Holds a single postcode lookup result.
  */
 
-class Address extends Results
+class Address extends AbstractResponse
 {
-    /**
-     * The raw address data.
-     */
-    protected $raw_response;
-
     /**
      * $address_respose is the array response from the API call.
      */
-    public function __construct(Transport $transport, $address_response)
+    public function __construct(Transport $transport, $address_response = null)
     {
-        // Save a copy.
+        $this->transport = $transport;
         $this->raw_response = $address_response;
     }
 }
