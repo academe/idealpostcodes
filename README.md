@@ -6,7 +6,7 @@ https://ideal-postcodes.co.uk/documentation
 
 Still much work-in-progress, but a working library. This package is not associated officially with *Ideal Postcodes*.
 
-## General Aproach
+## General Approach
 
 This is the general approach I have taken in developing this library. It was all initially written in one day 
 to meet a need for a specific project, so may be a bit rushed, but I have tried to keep it as generic as
