@@ -110,3 +110,5 @@ var_dump($address->toArray());
 * Consider an adapter for the collection, so other collections can be used
 * The collections are not JSON serialisable; it would help if they are; use $collection->all() and serialise that for now
 * More helper methods to interpret the API codes that are received, to make it easier to identify http errors, failure to find a match, and so on.
+* Maybe consider putting all the request methods into a single class and returning Postcodes, Addresses and colletions of either from there. That way the records can be true value objects.  
+The methods are spread over multiple classes just for history reasons, and is probably not an optimal approach.
