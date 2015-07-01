@@ -5,7 +5,9 @@
  * Holds the raw data, API results codes and messages.
  */
 
-abstract class AbstractResponse
+use JsonSerializable;
+
+abstract class AbstractResponse implements JsonSerializable
 {
     /**
      * The communications helper.
@@ -76,5 +78,13 @@ abstract class AbstractResponse
     public function toArray()
     {
         return $this->raw_response;
+    }
+
+    /**
+     * Used when serialising an address as JSON.
+     * Serialises just the raw data and not the API result.
+     */
+    public function jsonSerialize() {
+        return $this->toArray();
     }
 }

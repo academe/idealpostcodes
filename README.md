@@ -79,3 +79,4 @@ var_dump($address->toArray());
 * More documnentation
 * Tests
 * Consider an adapter for the collection, so other collections can be used
+* The collections are not JSON serialisable; it would help if they are; use $collection->all() and serialise that for now
