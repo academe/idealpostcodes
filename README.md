@@ -1,3 +1,6 @@
+[![Latest Stable Version](https://poser.pugx.org/academe/idealpostcodes/version.png)](https://packagist.org/packages/academe/idealpostcodes)
+[![Total Downloads](https://poser.pugx.org/academe/idealpostcodes/d/total.png)](https://packagist.org/packages/academe/idealpostcodes)
+
 # IdealPostcodes
 
 Library to access the [Ideal Postcodes](https://ideal-postcodes.co.uk/) API.
