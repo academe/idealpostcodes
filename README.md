@@ -109,3 +109,4 @@ var_dump($address->toArray());
 * Tests
 * Consider an adapter for the collection, so other collections can be used
 * The collections are not JSON serialisable; it would help if they are; use $collection->all() and serialise that for now
+* More helper methods to interpret the API codes that are received, to make it easier to identify http errors, failure to find a match, and so on.
