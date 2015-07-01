@@ -8,6 +8,11 @@
 abstract class AbstractResponse
 {
     /**
+     * The communications helper.
+     */
+    protected $transport;
+
+    /**
      * The status of the API result.
      */
     protected $status_code;
@@ -68,7 +73,7 @@ abstract class AbstractResponse
     /**
      * Get all raw result fields.
      */
-    public function getAll()
+    public function toArray()
     {
         return $this->raw_response;
     }

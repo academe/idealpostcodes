@@ -10,11 +10,6 @@ use PhpCollection\Sequence;
 class Postcode extends AbstractResponse
 {
     /**
-     * The communications helper.
-     */
-    protected $transport;
-
-    /**
      * The path used in the URL.
      */
     protected $path = 'postcodes';
