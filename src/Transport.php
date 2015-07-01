@@ -4,7 +4,7 @@
  * Provides the HTTP transport services for access to the API.
  */
 
-class Transport
+class Transport implements TransportInterface
 {
     /**
      * The api_key for the account.

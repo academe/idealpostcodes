@@ -5,107 +5,53 @@
  * Will itterate over the list of found addresses.
  */
 
-use Iterator;
-use Countable;
-
-class Postcode implements Iterator, Countable
+class Postcode extends Results
 {
     /**
-     * List of addresses found for this postcode.
+     * The communications helper.
      */
-    protected $addresses = [];
+    protected $transport;
 
     /**
-     * The status of the API result.
+     * The path used in the URL.
      */
-    protected $status_code;
-
-    /**
-     * The message from the API result.
-     */
-    protected $status_message;
-
-    /**
-     * The raw response, for inspection when debugging.
-     */
-    protected $raw_response;
+    protected $path = 'postcodes';
 
     /**
      * $respose is the array response from the API call.
      */
-    public function __construct($response)
+    public function __construct(TransportInterface $transport)
     {
-        // Save a copy.
-        $this->raw_response = $response;
-
-        // Parse the response into components.
-        $this->parseResponse($response);
-    }
-
-    public function parseResponse($response)
-    {
-        if (!is_array($response) || !isset($response['code'])) {
-            $this->status_code = '4000';
-            $this->status_message = 'No valid response received';
-            return;
-        }
-
-        $this->status_code = $response['code'];
-        $this->status_message = $response['message'];
-
-        if (is_array($response['result'])) {
-            // The result will be an array of addresses.
-            foreach($response['result'] as $address) {
-                $this->addresses[] = new Address($address);
-            }
-        }
-    }
-
-    public function getCode()
-    {
-        return $this->status_code;
-    }
-
-    public function getMessage()
-    {
-        return $this->status_message;
+        $this->transport = $transport;
     }
 
     /**
-     * Iterator methods.
+     * Return the URI used to fetch addresses for a postcode.
      */
-    public function rewind()
+    public function getUri($postcode)
     {
-        reset($this->addresses);
+        $path = [$this->path, str_replace(' ', '', $postcode)];
+
+        return $this->transport->getUri($path);
     }
 
-    public function current()
+    /**
+     * Get all addresses for a postcode.
+     */
+    public function getAddresses($postcode)
     {
-        $var = current($this->addresses);
-        return $var;
-    }
+        $url = $this->getUri($postcode);
 
-    public function key() 
-    {
-        $var = key($this->addresses);
-        return $var;
-    }
+        $response = $this->transport->get($url);
 
-    public function next() 
-    {
-        $var = next($this->addresses);
-        return $var;
-    }
+        $addresses = $this->parseResponse($response);
 
-    public function valid()
-    {
-        $key = key($this->addresses);
-        $var = ($key !== NULL && $key !== FALSE);
-        return $var;
-    }
+        if (!empty($addresses)) {
+            foreach($addresses as $address) {
+                $this->items[] = new Address($this->transport, $address);
+            }
+        }
 
-    public function count()
-    {
-        return count($this->addresses);
+        return $this;
     }
 }
